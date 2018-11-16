@@ -53,7 +53,8 @@ class NodeRegistry(val activeDevices: ActiveDevices = ActiveDevices()) {
         val filteredStream: Stream<NodeWrapper> = nodeWrappers
             .parallelStream()
             .filter { it.isAlive() }
-        return filteredStream.collect(toSet())
+        val aliveNodes = filteredStream.collect(toSet())
+        return aliveNodes
     }
 
     fun capacitiesTotal(desiredCapabilities: DesiredCapabilities): Map<String, Int> {
